@@ -1,0 +1,79 @@
+---
+alwaysApply: false
+---
+
+# Fullstack Template Project Structure
+
+This is a monorepo using pnpm workspaces with the following structure:
+
+## Apps Directory
+
+- **Client** (`apps/client/`): React frontend with TanStack Router
+
+  - Main entry: [apps/client/src/main.tsx](mdc:apps/client/src/main.tsx)
+  - Routes: [apps/client/src/routes/](mdc:apps/client/src/routes/)
+  - UI Components: [apps/client/src/shadcn/components/](mdc:apps/client/src/shadcn/components/)
+  - Utilities: [apps/client/src/shadcn/lib/utils.ts](mdc:apps/client/src/shadcn/lib/utils.ts)
+
+- **Server** (`apps/server/`): Express.js backend
+
+  - Main entry: [apps/server/src/index.ts](mdc:apps/server/src/index.ts)
+  - Uses the database package as a dependency
+
+- **Database** (`apps/database/`): Drizzle ORM setup
+  - Schema: [apps/database/src/schema/](mdc:apps/database/src/schema/)
+  - Main export: [apps/database/src/index.ts](mdc:apps/database/src/index.ts)
+  - Migrations: [apps/database/drizzle/](mdc:apps/database/drizzle/)
+
+## Key Configuration Files
+
+- Workspace config: [pnpm-workspace.yaml](mdc:pnpm-workspace.yaml)
+- Root package: [package.json](mdc:package.json)
+- Client config: [apps/client/package.json](mdc:apps/client/package.json)
+- Server config: [apps/server/package.json](mdc:apps/server/package.json)
+- Database config: [apps/database/package.json](mdc:apps/database/package.json)
+
+## Development Workflow
+
+1. Use `pnpm` as package manager (version 10.1.0)
+2. Client runs on Vite dev server
+3. Server uses nodemon with tsx for development
+4. Database uses Drizzle Kit for migrations
+
+# Fullstack Template Project Structure
+
+This is a monorepo using pnpm workspaces with the following structure:
+
+## Apps Directory
+
+- **Client** (`apps/client/`): React frontend with TanStack Router
+
+  - Main entry: [apps/client/src/main.tsx](mdc:apps/client/src/main.tsx)
+  - Routes: [apps/client/src/routes/](mdc:apps/client/src/routes/)
+  - UI Components: [apps/client/src/shadcn/components/](mdc:apps/client/src/shadcn/components/)
+  - Utilities: [apps/client/src/shadcn/lib/utils.ts](mdc:apps/client/src/shadcn/lib/utils.ts)
+
+- **Server** (`apps/server/`): Express.js backend
+
+  - Main entry: [apps/server/src/index.ts](mdc:apps/server/src/index.ts)
+  - Uses the database package as a dependency
+
+- **Database** (`apps/database/`): Drizzle ORM setup
+  - Schema: [apps/database/src/schema/](mdc:apps/database/src/schema/)
+  - Main export: [apps/database/src/index.ts](mdc:apps/database/src/index.ts)
+  - Migrations: [apps/database/drizzle/](mdc:apps/database/drizzle/)
+
+## Key Configuration Files
+
+- Workspace config: [pnpm-workspace.yaml](mdc:pnpm-workspace.yaml)
+- Root package: [package.json](mdc:package.json)
+- Client config: [apps/client/package.json](mdc:apps/client/package.json)
+- Server config: [apps/server/package.json](mdc:apps/server/package.json)
+- Database config: [apps/database/package.json](mdc:apps/database/package.json)
+
+## Development Workflow
+
+1. Use `pnpm` as package manager (version 10.1.0)
+2. Client runs on Vite dev server
+3. Server uses nodemon with tsx for development
+4. Database uses Drizzle Kit for migrations

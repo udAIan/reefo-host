@@ -1,0 +1,47 @@
+---
+alwaysApply: true
+---
+
+# Coding Standards and Best Practices
+
+## TypeScript Guidelines
+
+- Use arrow function syntax for all functions (as per existing rule)
+- Use strict TypeScript configuration
+- Prefer `const` over `let` when possible
+- Use type inference when types are obvious
+
+## Import/Export Patterns
+
+- Use ES modules (`import`/`export`)
+- Use named exports for utilities and components
+- Group imports: external libraries, internal modules, relative imports
+
+## File Naming Conventions
+
+- Use kebab-case for file names: `my-component.tsx`
+- Use PascalCase for component names: `MyComponent`
+- Use camelCase for functions and variables: `myFunction`
+- Use UPPER_SNAKE_CASE for constants: `API_BASE_URL`
+
+# Coding Standards and Best Practices
+
+## TypeScript Guidelines
+
+- Use arrow function syntax for all functions (as per existing rule)
+- Use strict TypeScript configuration
+- Prefer `const` over `let` when possible
+- Use type inference when types are obvious
+
+## Import/Export Patterns
+
+- Use ES modules (`import`/`export`)
+- Use named exports for utilities and components
+- Group imports: external libraries, internal modules, relative imports
+
+## File Naming Conventions
+
+- Use kebab-case for file names: `my-component.tsx`
+- Use PascalCase for component names: `MyComponent`
+- Use camelCase for functions and variables: `myFunction`
+- Use UPPER_SNAKE_CASE for constants: `API_BASE_URL`

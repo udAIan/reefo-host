@@ -1,0 +1,141 @@
+---
+alwaysApply: false
+---
+
+# Development Workflow Guidelines
+
+## Package Manager
+
+- Use `pnpm` version 10.1.0 (specified in [package.json](mdc:package.json))
+- Workspace configuration in [pnpm-workspace.yaml](mdc:pnpm-workspace.yaml)
+- Install dependencies: `pnpm install`
+- Add dependencies to specific apps: `pnpm --filter <app-name> add <package>`
+
+## Development Commands
+
+### Client Development
+
+```bash
+# Start client dev server
+pnpm --filter client dev
+
+# Build client
+pnpm --filter client build
+
+# Lint client code
+pnpm --filter client lint
+```
+
+### Server Development
+
+```bash
+# Start server with hot reload
+pnpm --filter server dev
+
+# Build server
+pnpm --filter server build
+
+# Start production server
+pnpm --filter server start
+```
+
+### Database Operations
+
+```bash
+# Generate migrations
+pnpm --filter database generate
+
+# Run migrations
+pnpm --filter database migrate
+
+# Build database package
+pnpm --filter database build
+```
+
+## Environment Setup
+
+- Use `.env` files for environment variables
+- Client: Vite environment variables
+- Server: `dotenv` package for loading environment variables
+- Database: Connection strings and configuration
+
+## Cross-Package Dependencies
+
+- Server depends on database package: `"database": "workspace:*"`
+- Use workspace protocol for internal dependencies
+- Build order: database → server → client
+
+## TypeScript Configuration
+
+- Each app has its own `tsconfig.json`
+- Use strict TypeScript settings
+- ES modules throughout the project
+
+# Development Workflow Guidelines
+
+## Package Manager
+
+- Use `pnpm` version 10.1.0 (specified in [package.json](mdc:package.json))
+- Workspace configuration in [pnpm-workspace.yaml](mdc:pnpm-workspace.yaml)
+- Install dependencies: `pnpm install`
+- Add dependencies to specific apps: `pnpm --filter <app-name> add <package>`
+
+## Development Commands
+
+### Client Development
+
+```bash
+# Start client dev server
+pnpm --filter client dev
+
+# Build client
+pnpm --filter client build
+
+# Lint client code
+pnpm --filter client lint
+```
+
+### Server Development
+
+```bash
+# Start server with hot reload
+pnpm --filter server dev
+
+# Build server
+pnpm --filter server build
+
+# Start production server
+pnpm --filter server start
+```
+
+### Database Operations
+
+```bash
+# Generate migrations
+pnpm --filter database generate
+
+# Run migrations
+pnpm --filter database migrate
+
+# Build database package
+pnpm --filter database build
+```
+
+## Environment Setup
+
+- Use `.env` files for environment variables
+- Client: Vite environment variables
+- Server: `dotenv` package for loading environment variables
+- Database: Connection strings and configuration
+
+## Cross-Package Dependencies
+
+- Server depends on database package: `"database": "workspace:*"`
+- Use workspace protocol for internal dependencies
+- Build order: database → server → client
+
+## TypeScript Configuration
+
+- Each app has its own `tsconfig.json`
+- Use strict TypeScript settings
+- ES modules throughout the project

@@ -1,4 +1,3 @@
-import * as React from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -18,7 +17,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../shadcn/components/dropdown-menu";
-import { ChevronDown, LogOut, User2 } from "lucide-react";
+import { ChevronDown, LogOut } from "lucide-react";
+import { Avatar, AvatarFallback } from "../shadcn/components/avatar";
 
 export const AppSidebar = () => {
   return (
@@ -29,7 +29,16 @@ export const AppSidebar = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> Username
+                  <Avatar>
+                    <AvatarFallback
+                      className={`${getAvatarColor("Ash").bg} ${
+                        getAvatarColor("Ash").text
+                      }`}
+                    >
+                      JD
+                    </AvatarFallback>
+                  </Avatar>
+                  <span className="ml-2">John Doe</span>
                   <ChevronDown className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -100,4 +109,38 @@ export const AppSidebar = () => {
       <SidebarRail />
     </Sidebar>
   );
+};
+
+// Generate a consistent color based on text
+const getAvatarColor = (text: string): { bg: string; text: string } => {
+  const colorPairs = [
+    { bg: "bg-red-500", text: "text-sidebar-foreground" },
+    { bg: "bg-orange-500", text: "text-sidebar-foreground" },
+    { bg: "bg-amber-500", text: "text-sidebar" },
+    { bg: "bg-yellow-500", text: "text-sidebar" },
+    { bg: "bg-lime-500", text: "text-sidebar" },
+    { bg: "bg-green-500", text: "text-sidebar-foreground" },
+    { bg: "bg-emerald-500", text: "text-sidebar-foreground" },
+    { bg: "bg-teal-500", text: "text-sidebar-foreground" },
+    { bg: "bg-cyan-500", text: "text-sidebar-foreground" },
+    { bg: "bg-sky-500", text: "text-sidebar-foreground" },
+    { bg: "bg-blue-500", text: "text-sidebar-foreground" },
+    { bg: "bg-indigo-500", text: "text-sidebar-foreground" },
+    { bg: "bg-violet-500", text: "text-sidebar-foreground" },
+    { bg: "bg-purple-500", text: "text-sidebar-foreground" },
+    { bg: "bg-fuchsia-500", text: "text-sidebar-foreground" },
+    { bg: "bg-pink-500", text: "text-sidebar-foreground" },
+    { bg: "bg-rose-500", text: "text-sidebar-foreground" },
+  ];
+
+  // Simple hash function to get consistent color for same text
+  let hash = 0;
+  for (let i = 0; i < text.length; i++) {
+    const char = text.charCodeAt(i);
+    hash = (hash << 5) - hash + char;
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+
+  const index = Math.abs(hash) % colorPairs.length;
+  return colorPairs[index];
 };
