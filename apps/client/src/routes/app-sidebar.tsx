@@ -31,14 +31,14 @@ export const AppSidebar = () => {
                 <SidebarMenuButton>
                   <Avatar>
                     <AvatarFallback
-                      className={`${getAvatarColor("Ash").bg} ${
-                        getAvatarColor("Ash").text
+                      className={`${getAvatarColor("Ash He").bg} ${
+                        getAvatarColor("Ash He").text
                       }`}
                     >
-                      JD
+                      AH
                     </AvatarFallback>
                   </Avatar>
-                  <span className="ml-2">John Doe</span>
+                  <span className="ml-2">Ash He</span>
                   <ChevronDown className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
