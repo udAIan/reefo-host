@@ -11,6 +11,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "../shadcn/components/sidebar";
+import { Link } from "@tanstack/react-router";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -23,17 +24,37 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton>Installation</SidebarMenuButton>
+                <SidebarMenuButton asChild>
+                  <Link
+                    to="/app"
+                    activeProps={{
+                      className:
+                        "bg-sidebar-accent font-medium text-sidebar-accent-foreground",
+                    }}
+                  >
+                    App
+                  </Link>
+                </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <SidebarMenuButton>Project Structure</SidebarMenuButton>
+                <SidebarMenuButton asChild>
+                  <Link
+                    to="/x"
+                    activeProps={{
+                      className:
+                        "bg-sidebar-accent font-medium text-sidebar-accent-foreground",
+                    }}
+                  >
+                    X
+                  </Link>
+                </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
 
         {/* Group 2 */}
-        <SidebarGroup>
+        {/* <SidebarGroup>
           <SidebarGroupLabel>Building Your Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -45,7 +66,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
-        </SidebarGroup>
+        </SidebarGroup> */}
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
