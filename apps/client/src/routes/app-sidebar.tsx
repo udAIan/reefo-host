@@ -112,7 +112,7 @@ export const AppSidebar = () => {
 };
 
 // Generate a consistent color based on text
-const getAvatarColor = (text: string): { bg: string; text: string } => {
+const getAvatarColor = (text: string) => {
   const colorPairs = [
     { bg: "bg-red-500", text: "text-sidebar-foreground" },
     { bg: "bg-orange-500", text: "text-sidebar-foreground" },

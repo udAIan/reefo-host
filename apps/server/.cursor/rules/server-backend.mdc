@@ -32,8 +32,3 @@
 - Follow the existing TypeScript setup in [apps/server/tsconfig.json](mdc:apps/server/tsconfig.json)
 - Use strict type checking
 - Import types from `@types/express` and `@types/node`
-  description:
-  globs:
-  alwaysApply: false
-
----
