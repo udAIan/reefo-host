@@ -8,5 +8,11 @@
   "packageManager": "pnpm@10.1.0",
   "engines": {
     "pnpm": "10.1.0"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  },
+  "scripts": {
+    "prepare": "husky"
   }
 }
