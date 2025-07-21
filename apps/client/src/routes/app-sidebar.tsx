@@ -26,29 +26,29 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link
-                    to="/app"
+                    to="/app/route1"
                     activeProps={{
                       className:
                         "bg-sidebar-accent font-medium text-sidebar-accent-foreground",
                     }}
                   >
-                    App
+                    Route 1
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
-              {/* <SidebarMenuItem>
+              <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <Link
-                    to="/x"
+                    to="/app/route2"
                     activeProps={{
                       className:
                         "bg-sidebar-accent font-medium text-sidebar-accent-foreground",
                     }}
                   >
-                    X
+                    Route 2
                   </Link>
                 </SidebarMenuButton>
-              </SidebarMenuItem> */}
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

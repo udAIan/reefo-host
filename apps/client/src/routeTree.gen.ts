@@ -12,7 +12,8 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/~__root'
 import { Route as AppLayoutRouteImport } from './routes/~app/~_layout'
-import { Route as AppLayoutIndexRouteImport } from './routes/~app/~_layout/~index'
+import { Route as AppLayoutRoute2RouteImport } from './routes/~app/~_layout/~route2'
+import { Route as AppLayoutRoute1RouteImport } from './routes/~app/~_layout/~route1'
 
 const AppRouteImport = createFileRoute('/app')()
 
@@ -25,31 +26,45 @@ const AppLayoutRoute = AppLayoutRouteImport.update({
   id: '/_layout',
   getParentRoute: () => AppRoute,
 } as any)
-const AppLayoutIndexRoute = AppLayoutIndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AppLayoutRoute2Route = AppLayoutRoute2RouteImport.update({
+  id: '/route2',
+  path: '/route2',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
+const AppLayoutRoute1Route = AppLayoutRoute1RouteImport.update({
+  id: '/route1',
+  path: '/route1',
   getParentRoute: () => AppLayoutRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/app': typeof AppLayoutRouteWithChildren
-  '/app/': typeof AppLayoutIndexRoute
+  '/app/route1': typeof AppLayoutRoute1Route
+  '/app/route2': typeof AppLayoutRoute2Route
 }
 export interface FileRoutesByTo {
-  '/app': typeof AppLayoutIndexRoute
+  '/app': typeof AppLayoutRouteWithChildren
+  '/app/route1': typeof AppLayoutRoute1Route
+  '/app/route2': typeof AppLayoutRoute2Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/app': typeof AppRouteWithChildren
   '/app/_layout': typeof AppLayoutRouteWithChildren
-  '/app/_layout/': typeof AppLayoutIndexRoute
+  '/app/_layout/route1': typeof AppLayoutRoute1Route
+  '/app/_layout/route2': typeof AppLayoutRoute2Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/app' | '/app/'
+  fullPaths: '/app' | '/app/route1' | '/app/route2'
   fileRoutesByTo: FileRoutesByTo
-  to: '/app'
-  id: '__root__' | '/app' | '/app/_layout' | '/app/_layout/'
+  to: '/app' | '/app/route1' | '/app/route2'
+  id:
+    | '__root__'
+    | '/app'
+    | '/app/_layout'
+    | '/app/_layout/route1'
+    | '/app/_layout/route2'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -72,22 +87,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLayoutRouteImport
       parentRoute: typeof AppRoute
     }
-    '/app/_layout/': {
-      id: '/app/_layout/'
-      path: '/'
-      fullPath: '/app/'
-      preLoaderRoute: typeof AppLayoutIndexRouteImport
+    '/app/_layout/route2': {
+      id: '/app/_layout/route2'
+      path: '/route2'
+      fullPath: '/app/route2'
+      preLoaderRoute: typeof AppLayoutRoute2RouteImport
+      parentRoute: typeof AppLayoutRoute
+    }
+    '/app/_layout/route1': {
+      id: '/app/_layout/route1'
+      path: '/route1'
+      fullPath: '/app/route1'
+      preLoaderRoute: typeof AppLayoutRoute1RouteImport
       parentRoute: typeof AppLayoutRoute
     }
   }
 }
 
 interface AppLayoutRouteChildren {
-  AppLayoutIndexRoute: typeof AppLayoutIndexRoute
+  AppLayoutRoute1Route: typeof AppLayoutRoute1Route
+  AppLayoutRoute2Route: typeof AppLayoutRoute2Route
 }
 
 const AppLayoutRouteChildren: AppLayoutRouteChildren = {
-  AppLayoutIndexRoute: AppLayoutIndexRoute,
+  AppLayoutRoute1Route: AppLayoutRoute1Route,
+  AppLayoutRoute2Route: AppLayoutRoute2Route,
 }
 
 const AppLayoutRouteWithChildren = AppLayoutRoute._addFileChildren(
