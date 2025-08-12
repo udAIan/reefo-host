@@ -27,6 +27,26 @@
       "request": "launch",
       "command": "pnpm run dev",
       "cwd": "${workspaceFolder}/apps/client"
+    },
+    {
+      "type": "node-terminal",
+      "name": "packages/temporal-workflows",
+      "request": "launch",
+      "command": "pnpm run dev",
+      "cwd": "${workspaceFolder}/packages/temporal-workflows"
+    },
+    {
+      "type": "node-terminal",
+      "name": "apps/temporal-worker",
+      "request": "launch",
+      "command": "pnpm run dev",
+      "cwd": "${workspaceFolder}/apps/temporal-worker"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "full/temporal",
+      "configurations": ["packages/temporal-workflows", "apps/temporal-worker"]
     }
   ]
 }
