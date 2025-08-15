@@ -56,6 +56,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      fe-be-utils:
+        specifier: workspace:*
+        version: link:../../packages/fe-be-utils
       lucide-react:
         specifier: ^0.525.0
         version: 0.525.0(react@19.1.0)
@@ -151,6 +154,9 @@ importers:
       express:
         specifier: ^5.1.0
         version: 5.1.0
+      fe-be-utils:
+        specifier: workspace:*
+        version: link:../../packages/fe-be-utils
     devDependencies:
       '@types/express':
         specifier: ^5.0.3
@@ -161,6 +167,18 @@ importers:
       nodemon:
         specifier: ^3.1.10
         version: 3.1.10
+      tsx:
+        specifier: ^4.20.3
+        version: 4.20.3
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+
+  packages/fe-be-utils:
+    devDependencies:
+      '@types/node':
+        specifier: ^24.0.1
+        version: 24.0.15
       tsx:
         specifier: ^4.20.3
         version: 4.20.3
