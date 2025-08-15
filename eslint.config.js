@@ -32,7 +32,7 @@ export const sharedConfig = tseslint.config(
       ],
       "@typescript-eslint/no-explicit-any": "off",
       "prefer-const": "error",
-      "no-console": "warn",
+      "no-console": "error",
       "no-debugger": "error",
     },
   },

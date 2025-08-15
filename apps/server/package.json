@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --exec tsx src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js"
+    "build": "pnpm lint && rm -rf dist && tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
