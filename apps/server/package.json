@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
+  "types": "./dist/exported-types.d.ts",
   "scripts": {
     "dev": "nodemon --exec tsx src/index.ts",
     "build": "pnpm lint && rm -rf dist && tsc",
