@@ -167,6 +167,9 @@ importers:
       '@types/node':
         specifier: ^24.0.1
         version: 24.0.15
+      eslint-plugin-drizzle:
+        specifier: ^0.2.3
+        version: 0.2.3(eslint@9.31.0(jiti@2.4.2))
       nodemon:
         specifier: ^3.1.10
         version: 3.1.10

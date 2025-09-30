@@ -23,6 +23,7 @@
     "@types/express": "^5.0.3",
     "@types/node": "^24.0.1",
     "nodemon": "^3.1.10",
+    "eslint-plugin-drizzle": "^0.2.3",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   }

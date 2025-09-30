@@ -6,11 +6,15 @@ import { FE_BE_UTILS } from "fe-be-utils";
 const PORT = 3000;
 const app = express();
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.send(`Hello World ${FE_BE_UTILS}`);
 });
 
-app.get("/dummy", async (req, res) => {
+app.get("/dummy", async (_, res) => {
+  const dummy = await db.select().from(_dummy);
+  res.json(dummy);
+});
+app.post("/dummy", async (_, res) => {
   const dummy = await db.select().from(_dummy);
   res.json(dummy);
 });
