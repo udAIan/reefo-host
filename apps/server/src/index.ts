@@ -13,7 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const openai = traceOpenAI(
+const traceOpenai = traceOpenAI(
   new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   }) as any
@@ -36,7 +36,7 @@ app.post("/dummy", async (_, res) => {
 app.post("/api/chat", async (req, res) => {
   const { messages } = req.body as ChatRequest;
 
-  const completion = await openai.chat.completions.create({
+  const completion = await traceOpenai.chat.completions.create({
     model: "gpt-4o",
     messages: messages,
   });
@@ -48,6 +48,51 @@ app.post("/api/chat", async (req, res) => {
   };
 
   res.json(response);
+});
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+// LLM test endpoint
+app.get("/api/llm-test", async (_, res) => {
+  const randomNumber = Math.floor(Math.random() * 101);
+
+  const completion = await openai.responses.parse({
+    model: "gpt-4o-2024-08-06",
+    input: [
+      {
+        role: "user",
+        content: `The number is ${randomNumber}. If it's more than 50, set moreThan50 to true and include a message like "number ${randomNumber} is more than 50". If it's 50 or less, set moreThan50 to false and set message to empty string.`,
+      },
+    ],
+    text: {
+      format: {
+        type: "json_schema",
+        name: "number_check",
+        strict: true,
+        schema: {
+          type: "object",
+          properties: {
+            moreThan50: {
+              type: "boolean",
+            },
+            message: {
+              type: "string",
+            },
+          },
+          required: ["moreThan50", "message"],
+          additionalProperties: false,
+        },
+      },
+    },
+  });
+
+  const result = completion.output_parsed! as {
+    moreThan50: boolean;
+    message: string;
+  };
+
+  res.json(result);
 });
 
 app.listen(PORT, () => {
