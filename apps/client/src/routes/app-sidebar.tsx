@@ -87,6 +87,19 @@ export const AppSidebar = () => {
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link
+                    to="/app/chat"
+                    activeProps={{
+                      className:
+                        "bg-sidebar-accent font-medium text-sidebar-accent-foreground",
+                    }}
+                  >
+                    Chat
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

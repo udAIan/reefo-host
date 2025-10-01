@@ -14,6 +14,7 @@ import { Route as rootRouteImport } from './routes/~__root'
 import { Route as AppLayoutRouteImport } from './routes/~app/~_layout'
 import { Route as AppLayoutRoute2RouteImport } from './routes/~app/~_layout/~route2'
 import { Route as AppLayoutRoute1RouteImport } from './routes/~app/~_layout/~route1'
+import { Route as AppLayoutChatRouteImport } from './routes/~app/~_layout/~chat'
 
 const AppRouteImport = createFileRoute('/app')()
 
@@ -36,14 +37,21 @@ const AppLayoutRoute1Route = AppLayoutRoute1RouteImport.update({
   path: '/route1',
   getParentRoute: () => AppLayoutRoute,
 } as any)
+const AppLayoutChatRoute = AppLayoutChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => AppLayoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/app': typeof AppLayoutRouteWithChildren
+  '/app/chat': typeof AppLayoutChatRoute
   '/app/route1': typeof AppLayoutRoute1Route
   '/app/route2': typeof AppLayoutRoute2Route
 }
 export interface FileRoutesByTo {
   '/app': typeof AppLayoutRouteWithChildren
+  '/app/chat': typeof AppLayoutChatRoute
   '/app/route1': typeof AppLayoutRoute1Route
   '/app/route2': typeof AppLayoutRoute2Route
 }
@@ -51,18 +59,20 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/app': typeof AppRouteWithChildren
   '/app/_layout': typeof AppLayoutRouteWithChildren
+  '/app/_layout/chat': typeof AppLayoutChatRoute
   '/app/_layout/route1': typeof AppLayoutRoute1Route
   '/app/_layout/route2': typeof AppLayoutRoute2Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/app' | '/app/route1' | '/app/route2'
+  fullPaths: '/app' | '/app/chat' | '/app/route1' | '/app/route2'
   fileRoutesByTo: FileRoutesByTo
-  to: '/app' | '/app/route1' | '/app/route2'
+  to: '/app' | '/app/chat' | '/app/route1' | '/app/route2'
   id:
     | '__root__'
     | '/app'
     | '/app/_layout'
+    | '/app/_layout/chat'
     | '/app/_layout/route1'
     | '/app/_layout/route2'
   fileRoutesById: FileRoutesById
@@ -101,15 +111,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLayoutRoute1RouteImport
       parentRoute: typeof AppLayoutRoute
     }
+    '/app/_layout/chat': {
+      id: '/app/_layout/chat'
+      path: '/chat'
+      fullPath: '/app/chat'
+      preLoaderRoute: typeof AppLayoutChatRouteImport
+      parentRoute: typeof AppLayoutRoute
+    }
   }
 }
 
 interface AppLayoutRouteChildren {
+  AppLayoutChatRoute: typeof AppLayoutChatRoute
   AppLayoutRoute1Route: typeof AppLayoutRoute1Route
   AppLayoutRoute2Route: typeof AppLayoutRoute2Route
 }
 
 const AppLayoutRouteChildren: AppLayoutRouteChildren = {
+  AppLayoutChatRoute: AppLayoutChatRoute,
   AppLayoutRoute1Route: AppLayoutRoute1Route,
   AppLayoutRoute2Route: AppLayoutRoute2Route,
 }
