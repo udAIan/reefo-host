@@ -4,6 +4,7 @@ import cors from "cors";
 import OpenAI from "openai";
 import { db, _dummy } from "database";
 import { FE_BE_UTILS, type ChatRequest, type ChatResponse } from "fe-be-utils";
+import { traceOpenAI } from "openlayer/lib/integrations/openAiTracer";
 
 const PORT = 3000;
 const app = express();
@@ -12,10 +13,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const openai = traceOpenAI(
+  new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  }) as any
+);
 
 app.get("/", (_, res) => {
   res.send(`Hello World ${FE_BE_UTILS}`);
