@@ -1,33 +1,51 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "../../../shadcn/components/button";
 import { Input } from "../../../shadcn/components/input";
 import { Avatar, AvatarFallback } from "../../../shadcn/components/avatar";
 import { type Message } from "fe-be-utils";
+import { chatApi } from "../../../lib/api";
 
 export const Route = createFileRoute("/app/_layout/chat")({
   component: () => <ChatComponent />,
 });
 
 const ChatComponent = () => {
-  // Sample mock data for testing UI
-  const [messages] = useState<Message[]>([
-    { role: "user", content: "Hello! How are you?" },
-    { role: "assistant", content: "I'm doing great! How can I help you today?" },
-    { role: "user", content: "Can you explain what TypeScript is?" },
-    {
-      role: "assistant",
-      content:
-        "TypeScript is a strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.",
-    },
-  ]);
-
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const handleSend = () => {
-    if (input.trim()) {
-      // TODO: Will connect to API in Phase 4
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const handleSend = async () => {
+    if (input.trim() && !isLoading) {
+      const userMessage: Message = {
+        role: "user",
+        content: input.trim(),
+      };
+
+      setMessages((prev) => [...prev, userMessage]);
       setInput("");
+      setIsLoading(true);
+
+      const response = await chatApi.sendMessage({
+        messages: [...messages, userMessage],
+      });
+
+      const aiMessage: Message = {
+        role: "assistant",
+        content: response.reply,
+      };
+
+      setMessages((prev) => [...prev, aiMessage]);
+      setIsLoading(false);
     }
   };
 
@@ -67,6 +85,19 @@ const ChatComponent = () => {
               </div>
             </div>
           ))}
+          {isLoading && (
+            <div className="flex items-start gap-3">
+              <Avatar className="h-8 w-8 flex-shrink-0">
+                <AvatarFallback className="bg-green-500 text-white">
+                  AI
+                </AvatarFallback>
+              </Avatar>
+              <div className="rounded-lg bg-green-100 px-4 py-2 text-green-900">
+                Thinking...
+              </div>
+            </div>
+          )}
+          <div ref={messagesEndRef} />
         </div>
       </div>
 
@@ -79,8 +110,9 @@ const ChatComponent = () => {
             onKeyPress={handleKeyPress}
             placeholder="Type your message..."
             className="flex-1"
+            disabled={isLoading}
           />
-          <Button onClick={handleSend}>Send</Button>
+          <Button onClick={handleSend} disabled={isLoading}>Send</Button>
         </div>
       </div>
     </div>
