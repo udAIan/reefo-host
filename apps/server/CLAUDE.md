@@ -51,6 +51,9 @@ Uses `nodemon` with `tsx` for TypeScript execution and auto-reload on file chang
 
 Loads environment variables from `.env` file via `dotenv/config` import at the top of [src/index.ts](src/index.ts#L1).
 
+**Required Environment Variables**:
+- `OPENAI_API_KEY` - OpenAI API key for chat functionality
+
 ### Database Access
 
 Import database instance and schemas from the `database` workspace package:

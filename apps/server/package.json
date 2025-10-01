@@ -15,16 +15,17 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "database": "workspace:*",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "database": "workspace:*",
-    "fe-be-utils": "workspace:*"
+    "fe-be-utils": "workspace:*",
+    "openai": "^6.0.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
     "@types/node": "^24.0.1",
-    "nodemon": "^3.1.10",
     "eslint-plugin-drizzle": "^0.2.3",
+    "nodemon": "^3.1.10",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   }
